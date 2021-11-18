@@ -1,9 +1,19 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Button } from './stories/Button';
 import './App.css';
 
-function App() {
+export default function App() {
   const [count, setCount] = useState(0);
+  const [message, setMessage] = useState('');
+
+  useEffect(() => {
+    async function doFetch() {
+      const response = await fetch('/api/hello');
+      const result = await response.json();
+      setMessage(result.message);
+    }
+    doFetch();
+  }, []);
 
   return (
     <div className="app">
@@ -15,8 +25,7 @@ function App() {
           label={`count is: ${count}`}
         />
       </p>
+      <p>{message}</p>
     </div>
   );
 }
-
-export default App;
