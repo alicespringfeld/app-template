@@ -23,7 +23,6 @@ interface ButtonProps {
    */
   onClick?: () => void;
 }
-
 /**
  * Primary UI component for user interaction
  */
